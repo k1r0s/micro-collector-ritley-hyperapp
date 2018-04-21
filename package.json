@@ -1,0 +1,29 @@
+{
+  "name": "nodeapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "fe:dev": "poi front/app --jsx h",
+    "fe:build": "poi build front/app --jsx h",
+    "be:dev": "node back/index.js",
+    "stop": "pm2 stop back/index.js",
+    "start": "pm2 start back/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "kaop": "^4.0.2",
+    "lowdb": "^1.0.0",
+    "ritley": "^1.0.0",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "bulma": "^0.6.2",
+    "hyperapp": "^1.2.5",
+    "pm2": "^2.10.2",
+    "poi": "^9.6.13"
+  }
+}

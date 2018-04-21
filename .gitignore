@@ -1,0 +1,5 @@
+node_modules/
+dist/
+back/files/
+back/tmp/
+back/src/low.database.json
