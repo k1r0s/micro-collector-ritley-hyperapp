@@ -7,12 +7,16 @@ export default class {
   static file;
   static chunkSize = 1024 * 256;
 
+  static getProcessedPercent() {
+    return this.cursor / this.file.size * 100;
+  }
+
   static doFileUpload(config) {
     const { file } = config;
     const session = `${Date.now()}_${btoa(file.name)}`;
     this.sliceFile(
       file,
-      (chunk, step) => chunkUpload(chunk, session).then(_ => step()) || config.onProgress(this.cursor),
+      (chunk, step) => chunkUpload(chunk, session).then(_ => step()) || config.onProgress(this.getProcessedPercent()),
       chunk => lastChunkUpload(chunk, session, file.name).then(({ data }) => config.onSuccess(data.uid))
     )
   }

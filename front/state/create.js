@@ -5,6 +5,6 @@ export const state = {
       comments: "",
       file: ""
     },
-    errMessage: ""
+    errMessage: "",
+    progress: 0
   }
-  

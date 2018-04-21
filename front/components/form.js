@@ -19,14 +19,11 @@ export default (state, actions) => {
     actions.updateErrMessage(errMessage);
 
     if (!errMessage) {
-      console.log("validated", state.form);
       FileUpload.doFileUpload({
         file: state.form.file,
-        onProgress: process => console.log("chunk", process),
-        onSuccess: uid => FormModel.send(uid, state.form).then(({ data }) => console.log(data.message))
+        onProgress: process => actions.pushProgress(progress),
+        onSuccess: uid => FormModel.send(uid, state.form).then(({ data }) => actions.pushProgress(100))
       });
-    } else {
-      console.log("not validated", state.form);
     }
   }
 
@@ -40,6 +37,15 @@ export default (state, actions) => {
           {state.errMessage && <div class="notification is-warning">
             {state.errMessage}
           </div>}
+
+          {!!state.progress && <progress class="progress is-info" value={state.progress} max="100">
+            {state.progress}%
+          </progress>}
+
+          {state.progress === 100 && <div class="notification is-success">
+            Your upload has been successfuly processed
+          </div>}
+
 
           <HField label="Name">
             <input placeholder="Enter your name" {...bindChange("name")} class="input"/>

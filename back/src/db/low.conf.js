@@ -1,3 +1,3 @@
 module.exports = {
-  "path": `${__dirname}/../low.database.json`
+  "path": `${__dirname}/../../low.database.json`
 }
